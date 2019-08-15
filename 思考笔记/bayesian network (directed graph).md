@@ -8,13 +8,13 @@
 
   是变量之间的依赖关系，看下图
 
-  ![graphModel1](./graphModel1.png)
+  ![graphModel1](./pic/graphModel1.png)
   $$
   p(a,b,c)=p(a)p(b|c)p(c|a,b)  \tag{1}
   $$
   上图被称为**全链接图**，因为每一对变量都有链接，这也对应了bayesian的展开；但是当某些变量不依赖某些变量时，也就是某些变量之间是某种程度上的独立(条件独立)，那么联合概率展开后，所要求的参数大大减少，比如下图：
 
-  ![graph](./graphmodel2.png)
+  ![graph](./pic/graphmodel2.png)
 
   
 
@@ -38,9 +38,9 @@ $$
 
 1. 同父结构(尾到尾)
 
-   ![conditionIndependence1](conditionIndependence1.png)
+   ![conditionIndependence1](./pic/conditionIndependence1.png)
 
-   ![conditionIndependence2](conditionIndependence2.png)
+   ![conditionIndependence2](./pic/conditionIndependence2.png)
 
    上图的意思是，变量$c$是未被观测到的变量，下图的阴影表示被观测到。
 
@@ -60,7 +60,7 @@ $$
 
    当然还有一种情况是，即使$c$未被观测到，但是$c$可以通过其他的方式得到，或者是确定性参数，这时也认为c是已知的，相当于c被观测到。比如下面的一个例子：
 
-   ![Selection_001](Selection_001.png)
+   ![Selection_001](./pic/Selection_001.png)
 
    假设一维目标变量服从高斯分布，训练集$\bold x=[x_1,...,x_N]$，假设方差已知，均值未知，我们来估计$\mu$，如果把$\mu$当做是确定性的未知参数，那么$\mu$就不再是随机变量，那么
    $$
@@ -80,9 +80,9 @@ $$
 
 2. 顺序结构(头到尾)
 
-   ![Selection_008](Selection_008.png)
+   ![Selection_008](./pic/Selection_008.png)
 
-   ![Selection_011](Selection_011.png)
+   ![Selection_011](./pic/Selection_011.png)
 
    第一种情况，是否边缘独立：
    $$
@@ -98,9 +98,9 @@ $$
 
 3. $V$ 字结构
 
-   ![Selection_006](Selection_006.png)
+   ![Selection_006](./pic/Selection_006.png)
 
-   ![Selection_007](Selection_007.png)
+   ![Selection_007](./pic/Selection_007.png)
 
    第一种情况，是否边缘独立：
    $$
@@ -120,7 +120,7 @@ $$
 
   关于$A,B$是否关于$C$独立，当然这里不能说全是条件独立，有一部分的边缘独立；当满足下面的一条，就可以说是独立的：
 
-  1. $A​$到$B​$的所有路径当中，节点是同父结构（尾到尾的）或者是顺序结构（头到尾的），该节点在集合$C​$中
+  1. $A$到$B$的所有路径当中，节点是同父结构（尾到尾的）或者是顺序结构（头到尾的），该节点在集合$C$中
   2. $A$到$B$的所有路径当中，节点是V字结构（头到头的），该节点以及其后继都不在集合$C$中	
 
 ## 应用
@@ -129,7 +129,7 @@ $$
 
   其概率图是：
 
-![Selection_002](Selection_002.png)
+![Selection_002](./pic/Selection_002.png)
 
 ​	简要说明一下关系：
 $$
@@ -165,9 +165,9 @@ $$
 
 + 独立同分布(iid)
 
-  ![Selection_001](Selection_001.png)
+  ![Selection_001](./pic/Selection_001.png)
 
-  独立同分布数据的概念提供了条件独立和d-划分的另外一个例子，考虑一元高斯分布的后验概率分布问题。这可以表示为上面的概率图，这是因为每一个观测值的生成都是以参数$\mu$的高斯分布得到的，而彼此之间$x_i,x_j$之间并没有直接的依赖关系（直接的依赖关系表现为$x_i,x_j$ 直接用有向线相连），也就是假设数据是独立地从模型中抽取的，从上面的概率图中可以看出，如果给定$\mu$，那么$x_i,x_j​$是相互独立的。
+  独立同分布数据的概念提供了条件独立和d-划分的另外一个例子，考虑一元高斯分布的后验概率分布问题。这可以表示为上面的概率图，这是因为每一个观测值的生成都是以参数$\mu$的高斯分布得到的，而彼此之间$x_i,x_j$之间并没有直接的依赖关系（直接的依赖关系表现为$x_i,x_j$ 直接用有向线相连），也就是假设数据是独立地从模型中抽取的，从上面的概率图中可以看出，如果给定$\mu$，那么$x_i,x_j$是相互独立的。
 
 + naive bayesian model
 
@@ -177,7 +177,7 @@ $$
 
   这个从下面的概率图可以得到直观的看出，而这个图又是怎么画出来的呢？这是由于在采用过程中，$x_i,x_j$的采样都只是类别$z$的概率分布有关，所以如是画。   
 
-  ![Selection_003](Selection_003.png)
+  ![Selection_003](./pic/Selection_003.png)
 
 
 
@@ -187,17 +187,17 @@ $$
 
   混合高斯模型用于聚类，
 
-  ![Selection_001](Selection_001.jpg)
+  ![Selection_001](./pic/Selection_001.jpg)
 
   GMM的模型图为什么不是像朴素贝斯模型的图，而要搞出一个$z_n$呢？这是因为我们获取数据的过程是这样的，我们可以从采样的角度来考虑，其实有向图可以用祖先采样、逻辑采样、重要性采样和MCMC采样来获取，混合高斯模型就是先采样出一个具体的类别$z_n$，该类别决定了使用哪一个高斯模型。如果我们的有向图像朴素贝叶斯那样，如果给定$z$，那么就意味着训练集$(x_1,...,x_N)$都是从相同的类别得到的，显然是不对的。而朴素贝叶斯模型，输入空间的元素$(x_1,...,x_D)$就是来源一个类别。下图中的贝叶斯回归模型$\bold w$给定的情况下，训练集${t1,...,t_N}$是可以来自同样的参数$\bold w$的，训练集是可以来自任意的$\bold w$的，此时的$\bold w$没有固定。
 
   现在来看看GMM model 是如何独立的，从采样的过程可以知道$(z_{n-1},x_{n-1})\bot (z_{n},x_{n})$。
 
-  ![Selection_002](Selection_002.png)
+  ![Selection_002](./pic/Selection_002.png)
 
 + markov chain 和HMM model
 
-  ![Selection_008](Selection_008.jpg)
+  ![Selection_008](./pic/Selection_008.jpg)
 
   HMM model可以看成是GMM在时序上的拓展，markov chain是没有下面的$y$。
 

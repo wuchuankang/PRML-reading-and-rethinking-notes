@@ -31,13 +31,13 @@
   \Rightarrow \ln p(\bold X)=KL[q(\bold Z)||p(\bold Z|\bold X)]-KL[q(\bold Z)||p(\bold Z,\bold X)]
   $$
 
-​	由于散度$KL(q||p)\geq 0$，所以$\mathcal L(q,\theta)$是$\ln p(\bold X|\theta)​$的下界。
+​	由于散度$KL(q||p)\geq 0$，所以$\mathcal L(q,\theta)$是$\ln p(\bold X|\theta)$的下界。
 
-​	$KL(q||p)\geq 0$证明用到$Jessen​$ 不等式：
+​	$KL(q||p)\geq 0$证明用到$Jessen$ 不等式：
 $$
 KL(q||p)=-\int q(x)\ln \frac{p(x)}{q(x)}dx \geq \ln \int q(x)\frac{p(x)}{q(x)}dx=\ln \int p(x)dx=\ln 1=0   \tag{1.3}
 $$
-​	当$f(x)$凸函数来说，$Jessen​$ 不等式
+​	当$f(x)$凸函数来说，$Jessen$ 不等式
 $$
 f \left (t x_1 + (1-t) x_2 \right ) \leq t f(x_1)+ (1-t) f(x_2)   \tag{1.4}
 $$
@@ -49,40 +49,40 @@ $$
 $$
 f(\int p(x)xdx)\leq \int p(x)f(x)dx  \ \ \ \ \ or  \ \  \ \ f(\sum_x p(x)x)\leq \sum_x(p(x)f(x))
 $$
-​	当$f(x)​$是复合函数，其拓展就是下面的定理：
+​	当$f(x)$是复合函数，其拓展就是下面的定理：
 
 ​		若$g$是一实值可测函数，而$\varphi$在$g$的值域中是凸函数（这句话的意思是$\varphi(x)$是凸函数，而这里$\ln(x)$显然是是凸函数 ），
 $$
 \varphi\left(\int_{-\infty}^\infty g(x)f(x)\, dx\right) \le \int_{-\infty}^\infty \varphi(g(x)) f(x)\,dx   \tag{1.6}
 $$
-​	注意，当$g(x)=x​$时，那么$(1.6)​$就退化到$(1.5)​$，也就是说$(1.5)​$是$(1.6)​$的特例。
+​	注意，当$g(x)=x$时，那么$(1.6)$就退化到$(1.5)$，也就是说$(1.5)$是$(1.6)$的特例。
 
-​	$(1.3)​$中对应的$f(x)=\ln \frac{p(x)}{q(x)}​$ 是一个复合函数，所以用$(1.6)​$来证明。
+​	$(1.3)$中对应的$f(x)=\ln \frac{p(x)}{q(x)}$ 是一个复合函数，所以用$(1.6)$来证明。
 
-​	现在回到$(1.2)​$式的讨论：
+​	现在回到$(1.2)$式的讨论：
 $$
 \ln p(\bold X|\theta)=KL[q(\bold Z)||p(\bold Z|\bold X)]+\mathcal L(q,\theta)\\
 \mathcal L(q,\theta)=\sum_{\bold Z}q(\bold Z)\ln\left\{\frac{p(\bold Z,\bold X|\theta)}{q(\bold Z)} \right\}\tag{1.2}
 $$
-​	我们知道，当$q(\bold Z)=p(\bold Z|\bold X)​$时，$KL(q||p)=0​$，此时$\ln p(\bold X|\theta)=\mathcal L(q,\theta)​$。也就是说当我们选择的$\bold Z​$的分布是关于观测数据$\bold X​$的后验时，那么下界$\mathcal L(q,\theta)​$
+​	我们知道，当$q(\bold Z)=p(\bold Z|\bold X)$时，$KL(q||p)=0$，此时$\ln p(\bold X|\theta)=\mathcal L(q,\theta)$。也就是说当我们选择的$\bold Z$的分布是关于观测数据$\bold X$的后验时，那么下界$\mathcal L(q,\theta)$
 
-​	就等于似然函数$\ln p(\bold X|\theta)​$。
+​	就等于似然函数$\ln p(\bold X|\theta)$。
 
-​	EM算法是一个两步迭代算法，我们可以用$(1.2)​$式的分解来定义EM算法，并说明该算法确实是最大化了对数似然函数$\ln p(\bold X|\theta)​$ 。
+​	EM算法是一个两步迭代算法，我们可以用$(1.2)$式的分解来定义EM算法，并说明该算法确实是最大化了对数似然函数$\ln p(\bold X|\theta)$ 。
 
-1. 首先给定$\theta​$的初始值$\theta_0​$;
+1. 首先给定$\theta$的初始值$\theta_0$;
 
-2. 假设迭代过程中，第n步的参数是$\theta^{old}​$，在E步中，固定$\theta^{old}\,​$，选取$q(\bold Z)​$来最大化下界$\mathcal L(q,\theta^{old})​$ ，我们注意到，$\theta^{old}​$固定，那么$\ln p(\bold X|\theta^{old})​$也就固定，这是因为$\ln p(\bold X|\theta^{old})​$参数已知，$\bold X​$又是已知的观察变量，所以$\ln p(\bold X|\theta^{old})​$就已知。那么要在固定$\theta^{old}\,​$，选取$q(\bold Z)​$来最大化下界$\mathcal L(q,\theta^{old})​$，则解就是$q(\bold Z)=p(\bold Z|\bold X,\theta^{old})​$，这样才能使得散度项消失。
+2. 假设迭代过程中，第n步的参数是$\theta^{old}$，在E步中，固定$\theta^{old}\,$，选取$q(\bold Z)$来最大化下界$\mathcal L(q,\theta^{old})$ ，我们注意到，$\theta^{old}$固定，那么$\ln p(\bold X|\theta^{old})$也就固定，这是因为$\ln p(\bold X|\theta^{old})$参数已知，$\bold X$又是已知的观察变量，所以$\ln p(\bold X|\theta^{old})$就已知。那么要在固定$\theta^{old}\,$，选取$q(\bold Z)$来最大化下界$\mathcal L(q,\theta^{old})$，则解就是$q(\bold Z)=p(\bold Z|\bold X,\theta^{old})$，这样才能使得散度项消失。
 
-3. 在M步中，固定$q(\bold Z)​$，也就是固定$p(\bold Z|\bold X,\theta^{old})​$，选取$\theta^{new}​$来最大化$\mathcal L(q^{old},\theta)​$，那么来看看$\ln p(\bold X|\theta)​$的变化：
+3. 在M步中，固定$q(\bold Z)$，也就是固定$p(\bold Z|\bold X,\theta^{old})$，选取$\theta^{new}$来最大化$\mathcal L(q^{old},\theta)$，那么来看看$\ln p(\bold X|\theta)$的变化：
    $$
    \ln p(\bold X|\theta^{new})-\ln p(\bold X|\theta^{old})=KL[p(\bold Z|\bold X,\theta^{old})||p(\bold Z|\bold X,\theta^{new})]+\mathcal L(q,\theta^{new})-\mathcal L(q,\theta^{old})
    $$
-   在$\theta^{new}​$下，由于$p(\bold Z|\bold X,\theta^{old}) \neq p(\bold Z|\bold X,\theta^{new})​$，所以散度不为0，也就是在M步中，$\ln p(\bold X|\theta)​$增加的量要大于$\mathcal L(q,\theta)​$ 量。
+   在$\theta^{new}$下，由于$p(\bold Z|\bold X,\theta^{old}) \neq p(\bold Z|\bold X,\theta^{new})$，所以散度不为0，也就是在M步中，$\ln p(\bold X|\theta)$增加的量要大于$\mathcal L(q,\theta)$ 量。
 
-   当不断重复2,3步，那么当$\mathcal L(q,\theta)​$最大时，则就求出了$\ln p(\bold X|\theta)​$的最大化。
+   当不断重复2,3步，那么当$\mathcal L(q,\theta)$最大时，则就求出了$\ln p(\bold X|\theta)$的最大化。
 
-注意，如果我们把$q(\bold Z)=p(\bold Z|\bold X,\theta^{old})​$带入到$(1.2)​$下面的式子中，则有：
+注意，如果我们把$q(\bold Z)=p(\bold Z|\bold X,\theta^{old})$带入到$(1.2)$下面的式子中，则有：
 $$
 \begin{aligned}
 \mathcal L(q,\theta)
@@ -91,32 +91,32 @@ $$
 &=E_{z\sim p(\bold Z|\bold X,\theta^{old})}\left[\ln p(\bold Z,\bold X|\theta) \right] + const
 \end{aligned}\\ \tag{1.7}
 $$
-可见，**最大化$\mathcal L(q,\theta)​$ 就是最大化完整数据对数似然$\ln p(\bold Z,\bold X|\theta)​$关于$p(\bold Z|\bold X,\theta^{old})​$的条件期望！**
+可见，**最大化$\mathcal L(q,\theta)$ 就是最大化完整数据对数似然$\ln p(\bold Z,\bold X|\theta)$关于$p(\bold Z|\bold X,\theta^{old})$的条件期望！**
 
 这句话从另外一个角度说明了EM算法出现的动机(motivation)，下面从概率建模的角度在说明EM算法。
 
-+  假设观测数据$\bold X=\left\{x_1,...,x_N\right\}​$，我们要求其联合概率分布$p(\bold X)​$，怎么建模处理？
++  假设观测数据$\bold X=\left\{x_1,...,x_N\right\}$，我们要求其联合概率分布$p(\bold X)$，怎么建模处理？
 
-  我们引入潜在变量(laten variable)$\bold Z=[z_1,...,z_N]​$，假设$\bold Z​$是离散的，对于连续型，则下面的求和改成求积分即可。即每一个观测变量$x_n​$，都对应一个潜在变量$z_n​$，我们把$\left\{\bold X, \bold Z \right\}​$称为完整数据，$\left\{\bold X \right\}​$称为不完整数据，其对应的对数似然函数分别为：
+  我们引入潜在变量(laten variable)$\bold Z=[z_1,...,z_N]$，假设$\bold Z$是离散的，对于连续型，则下面的求和改成求积分即可。即每一个观测变量$x_n$，都对应一个潜在变量$z_n$，我们把$\left\{\bold X, \bold Z \right\}$称为完整数据，$\left\{\bold X \right\}$称为不完整数据，其对应的对数似然函数分别为：
   $$
   \ln p(\bold X|\theta)=\ln \sum_{\bold Z} p(\bold X, \bold Z|\theta)\\
   \ln  p(\bold X, \bold Z|\theta)   \tag{2.1}
   $$
-  从直觉上看，因为$\ln  p(\bold X|\theta)​$对数作用在一个求和上，对参数$\theta​$ 求导时，将得不到闭式解，而$\ln  p(\bold X, \bold Z|\theta) ​$对数直接作用在概率上，更容易求解。
+  从直觉上看，因为$\ln  p(\bold X|\theta)$对数作用在一个求和上，对参数$\theta$ 求导时，将得不到闭式解，而$\ln  p(\bold X, \bold Z|\theta) $对数直接作用在概率上，更容易求解。
 
-  但是现实是，我们只有观测数据$\bold X​$，我们得不到具体某个观测$\bold Z​$下，$\ln  p(\bold X, \bold Z|\theta) ​$的概率，对于$ \bold Z​$，如果假设了其先验还有其他参数，因为已经假设，是已知的，用$\theta^{old}​$表示，我们可以知道其后验$p(\bold Z|\bold X,\theta^{old})​$ ，这个可以从下面的贝叶斯公式中得到：
+  但是现实是，我们只有观测数据$\bold X$，我们得不到具体某个观测$\bold Z$下，$\ln  p(\bold X, \bold Z|\theta) $的概率，对于$ \bold Z$，如果假设了其先验还有其他参数，因为已经假设，是已知的，用$\theta^{old}$表示，我们可以知道其后验$p(\bold Z|\bold X,\theta^{old})$ ，这个可以从下面的贝叶斯公式中得到：
   $$
   p(\bold Z|\bold X,\theta^{old})=\frac{p(\bold X|\bold Z,\theta^{old})p(\bold Z|\theta^{old})}{\sum_{\bold Z}p(\bold X|\bold Z,\theta^{old})p(\bold Z|\theta^{old})} \tag{2.2}
   $$
-  虽然我们得不到具体某个观测$\bold Z​$下的完整数据的对数似然，但是我们可以用均值来代替；具体说就这样的，你给定不同的观测$\bold Z​$，则有不同的$\ln  p(\bold X, \bold Z|\theta) ​$，因为没法给定$\bold Z​$，但我们可以给出$\ln  p(\bold X, \bold Z|\theta) ​$关于$\bold Z​$的均值，也就是期望：
+  虽然我们得不到具体某个观测$\bold Z$下的完整数据的对数似然，但是我们可以用均值来代替；具体说就这样的，你给定不同的观测$\bold Z$，则有不同的$\ln  p(\bold X, \bold Z|\theta) $，因为没法给定$\bold Z$，但我们可以给出$\ln  p(\bold X, \bold Z|\theta) $关于$\bold Z$的均值，也就是期望：
   $$
   \mathcal E(\theta,\theta^{old}) =E_{z\sim p(\bold Z|\bold X,\theta^{old})}\left[\ln p(\bold Z,\bold X|\theta) \right]=\sum_{\bold Z}p(\bold Z|\bold X,\theta^{old})\ln  p(\bold X, \bold Z|\theta)  \tag{2.3}
   $$
-  我们用这个均值来代替完整数据的对数似然函数，这对应了EM算法中的E（expection）步，这也是为什么叫E步的原因：根据后验概率$p(\bold Z|\bold X,\theta^{old})​$ ，用其条件期望来代替完整数据的对数似然函数。
+  我们用这个均值来代替完整数据的对数似然函数，这对应了EM算法中的E（expection）步，这也是为什么叫E步的原因：根据后验概率$p(\bold Z|\bold X,\theta^{old})$ ，用其条件期望来代替完整数据的对数似然函数。
 
-  要注意的是，$(2.3)​$中的$\ln  p(\bold X, \bold Z|\theta)​$中的$\theta​$ 是未知的，如果它用$\ln  p(\bold X, \bold Z|\theta^{old})​$代替，那么$(2.3)​$就是具体值了，而不是函数了。另外就是对照$(1.7)​$，可以看到是等价的。
+  要注意的是，$(2.3)$中的$\ln  p(\bold X, \bold Z|\theta)$中的$\theta$ 是未知的，如果它用$\ln  p(\bold X, \bold Z|\theta^{old})$代替，那么$(2.3)$就是具体值了，而不是函数了。另外就是对照$(1.7)$，可以看到是等价的。
 
-  在M步就是求$\mathcal E(\theta,\theta^{old}) ​$最大值的解：
+  在M步就是求$\mathcal E(\theta,\theta^{old}) $最大值的解：
   $$
   \theta^{new}=\arg\min_{\theta} \mathcal E(\theta,\theta^{old})  \tag{2.4}
   $$
@@ -158,7 +158,7 @@ p(\bold x)=\sum_{k=1}^{K}\pi_k \mathcal N(\bold x|\mu_k,\Sigma_k)   \tag{4.1}
 $$
 这个模型的来源是可以用采样的角度来分析，假设有$K$个高斯模型，先在$K$个模型中抽取一个高斯模型，再在这个高斯模型采样。用概率图模型就是
 
-![Selection_001](Selection_001.jpg)
+![Selection_001](./pic/Selection_001.jpg)
 
 其中的$\bold z_n$就是所抽取到的模型的结果，我们用"(1-of-K)"表示法来表示，那么
 $$
@@ -189,7 +189,7 @@ p(\bold Z,\bold X|\pi,\mu,\Sigma)
 $$
 上面第2步到第3步之所以是这样，是因为$\bold z_n$之间是相互独立的，这个从下面的概率图中根据D-Separation可以说明，$\bold z_i$到$\bold z_j$之间的路径是只有通过$\pi$ ，而参数$\pi$当成已知参数处理，那么就是尾对尾的，所以是独立的。$\bold z_i$到$\bold z_j$之间的路径是不会通过$\bold x_n$的，这从采样的过程已经说明了，每一次都是上一次独立过程完成的，所以$\bold x_n$之间也是独立的，这也是$\ln p(\bold x|\theta)=\sum_{n=1}^{N}\ln \sum_{\bold z_n}p(\bold x_n,\bold z_n|\theta)$成立的原因，更直观的概率图模型应该是这样的。
 
-![Selection_002](../%E7%AC%94%E8%AE%B0/Selection_002.jpg)
+![Selection_002](./pic/Selection_002.jpg)
 
 现在我们想要估计出模型的参数，也就是求$\pi,\mu,\Sigma$，如何操作？
 
@@ -240,7 +240,7 @@ E_{p(\bold z_n|\bold x_n)}[\bold z_{nk}]
 \end{align}   \tag{4.9}
 $$
 
-$\bold z_n$ 可以取$[1,0,..,0],[0,1,0...,0],...,[0,...,0,1]$，仅有一个$\bold z_n$可以使得$\bold z_{nk}=1​$，所以结果如上。
+$\bold z_n$ 可以取$[1,0,..,0],[0,1,0...,0],...,[0,...,0,1]$，仅有一个$\bold z_n$可以使得$\bold z_{nk}=1$，所以结果如上。
 
 现在来考虑
 $$

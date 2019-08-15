@@ -6,7 +6,7 @@ KL(q||p)=\int q(x)\ln\frac{q(x)}{p(x)}dx
 $$
 很明显，KL散度不具有对称性，但既然都是来衡量分布相似程度，那么KL(q||p)和KL(p||q)有什么不同的效果呢？
 
-![Selection_003](Selection_003.jpg)
+![Selection_003](./pic/Selection_003.jpg)
 
 假定上面的红线表示的是$q(x)$分布，蓝线是$p(x)$分布，假设我们现在寻求一个分布$q(x)$来使得KL(q||p)最小，也就是
 $$

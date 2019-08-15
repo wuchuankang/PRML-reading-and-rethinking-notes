@@ -11,17 +11,17 @@
 
   因为其函数图像像一个合页，所以叫合页损失函数。
 
-  ![hingeLoss](./hingeLoss.png)
+  ![hingeLoss](./pic/hingeLoss.png)
 
   上图给出了0-1损失(黑色)，hinge loss(蓝色，对应的是$[1-z]_+$)，缩放$1/\ln(2)$后的logistic损失(红色)，均方损失(绿色)。
 
-  当$z=y(w^T\bold x+b)​$时，横轴就代表函数间隔。
+  当$z=y(w^T\bold x+b)$时，横轴就代表函数间隔。
 
 + 感知机
 
     考虑二分问题(binary)，输出$y$两种类别用{+1,-1}表示，假设我们要找的决策面是$w^T\bold x+b=0$，对于训练集$\left\{(\bold x_1,y_1),...,(\bold x_N,y_N)\right\}$，我们将$w^T\bold x_i+b>0$的分为+1，将$w^T\bold x_i+b<0$的分为-1。那么$y_i(w^T\bold x_i+b)>0$时，被正确分类，当$y_i(w^T\bold x_i+b)<0$时，分类出现错误。
 
-![合页损失](./合页损失.png)
+![合页损失](./pic/合页损失.png)
 
 ​	{图中虚线是合页损失函数：$[0-y(w^T\bold x)]_+$，实线是：$[1-y(w^T\bold x)]_+$}
 
@@ -50,14 +50,14 @@ $$
 
   对于线性不可分函数，我们知道
 
-  ![SVM](./SVM.png)
+  ![SVM](./pic/SVM.png)
   $$
   y_i(w^T\bold x_i)\ge 1-\xi_i\\
   \xi_i\ge 0
   $$
   当$\xi_i=0$时，数据点被正确分类，要不在边缘上，要不在边缘的正确一侧。当$0<\xi_i\le1$时，数据点在边缘和决策边界之间，被正确分类；当$\xi_i>1$时，数据点被错误分类。
 
-  我们的目标是最大化边缘$\frac{1}{2}||w||^2​$，并且以比较柔和的方式惩罚位于边界上错误一侧的点，于是目标函数：
+  我们的目标是最大化边缘$\frac{1}{2}||w||^2$，并且以比较柔和的方式惩罚位于边界上错误一侧的点，于是目标函数：
   $$
   L=C\sum_{i=1}^N \xi_i + \frac{1}{2}||w||^2\\
   s.t. \ \  \ y_i(w^T\bold x_i+b)\ge1-\xi_i\\
@@ -84,11 +84,11 @@ $$
   \xi_i\ge0\\
   L=\sum_{i=1}^N \xi_i + \lambda||w||^2=\frac{1}{C}(C\sum_{i=1}^N \xi_i + \frac{1}{2}||w||^2),\ \  \ 其中\lambda=\frac{1}{2C}   \tag{6.2}
   $$
-  当$1-y_i(w^T\bold x_i +b)>0​$时，可得：
+  当$1-y_i(w^T\bold x_i +b)>0$时，可得：
   $$
   1-y_i(w^T\bold x_i +b)=\xi_i  \tag{6.3}
   $$
-  当$1-y_i(w^T\bold x_i +b)\le 0​$时，可得：
+  当$1-y_i(w^T\bold x_i +b)\le 0$时，可得：
   $$
   \xi_i=0 \\
   y_i(w^T\bold x_i +b)\ge1-0=1-\xi_i\tag{6.4}
@@ -119,7 +119,7 @@ $$
   $$
   L=\sum_{i=1}^N \ln(1+\exp(-y_iw^T\bold x_i)) +\lambda||w||^2    \tag{7.3}
   $$
-  为了能和其他误差函数进行比较，将负似然对数除以$\ln 2$，使其经过$(0,1)​$
+  为了能和其他误差函数进行比较，将负似然对数除以$\ln 2$，使其经过$(0,1)$
   $$
   L=\sum_{i=1}^N \ln(\frac{1+\exp(-y_iw^T\bold x_i)}{2}) +\lambda||w||^2    \tag{7.4}
   $$
